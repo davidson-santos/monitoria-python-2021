@@ -5,8 +5,8 @@ import PySimpleGUI as ui
 
 def abre_conexao_bd():
     try:
-        con = mysql.connector.connect(host="200.128.9.67", port=33004, database="mon_davidson", user="mon_davidson", password="dav00004")
-
+        #con = mysql.connector.connect(host="200.128.9.67", port=33004, database="mon_davidson", user="mon_davidson", password="dav00004")
+        con = mysql.connector.connect(host="localhost", port=3306, database="mydb", user="root", password="")
         return con
 
     except mysql.connector.Error as e:
@@ -47,11 +47,16 @@ def executa_conculta(sql):
         con.close()
         return resultado
     else:
-        print("O select não foi executado.\n")     
+        print("A consulta não foi executada.\n")     
 
 
 #----- PROGRAMA PRINCIPAL -------------------
-print(executa_conculta("select * from pergunta"))
+# dici = executa_conculta("select * from assunto")
+# dicio = {}
+# for item in dici:
+#     dicio[item[1]] = item[0]
+# print(dicio)
+
 #manipula_dados("insert into aluno (nome, turma_id, status) values ('sebastiao', 1, 'A');")
 #manipula_dados("update aluno set status = 'A' where id = 2")
 #executa_conculta("select * from aluno")
