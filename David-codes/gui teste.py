@@ -12,8 +12,10 @@ def inicio_menu():
     ]
 
     return ui.Window("Menu", layout,finalize=True)
+
 def cadastro_pergunta():
     ui.theme('DarkPurple')
+    assuntos = consulta_assuntos()
     layout = [
         [ui.Text("Digite as informações da pergunta")],
         [ui.Text("Enunciado"), ui.Input(size=(20,4),key="Enunciado")],
@@ -22,19 +24,14 @@ def cadastro_pergunta():
         [ui.Text("Alternativa 3"), ui.Input(size=(20,1),key="Alternativa 3")],
         [ui.Text("Alternativa 4"), ui.Input(size=(20,1),key="Alternativa 4")],
         [ui.Text("Dificuldade"), ui.Input(size=(1,1),key="Dificuldade")],
-        [ui.Text("Assunto"), ui.Input(size=(1,1),key="Assunto")],
+        [ui.Text("Assunto"),ui.Combo([x[1] for x in assuntos],default_value=assuntos[0][1],key="Assunto")],
         [ui.Button("Cadastrar",key=("OK-pergunta"))]
     ]
     return ui.Window("Cadastro", layout,finalize=True)
 
 def cadastro_assunto():
     ui.theme('DarkPurple')
-    assuntos = []
-    assuntos = BD.executa_conculta("select * from assunto")
-    
-    valor = []
-    for itens in assuntos:
-        valor.append(itens)
+    valor = consulta_assuntos()
     cad_column = [
         [ui.Text("Digite o novo assunto")],
         [ui.Text("Assunto"), ui.Input(size=(20,1), key="-cadastroA-")],
@@ -49,6 +46,15 @@ def cadastro_assunto():
         [result_column]
     ]
     return ui.Window("Cadastro", layout ,finalize=True)
+
+def consulta_assuntos() -> list:
+    assuntos = []
+    assuntos = BD.executa_conculta("select * from assunto")   
+    valor = []
+    for itens in assuntos:
+        valor.append(itens)
+    return valor
+
 # programa #
 tela = inicio_menu()
 cadast = None
@@ -75,6 +81,5 @@ while True:
         values["Alternativa 2"]+"','"+values["Alternativa 3"]+"','"
         +values["Alternativa 4"]+"', "+values["Dificuldade"]+","
         +values["Assunto"]+")")
-
 
 tela.close()

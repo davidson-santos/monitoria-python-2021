@@ -1,0 +1,8 @@
+START     top: 10px; left: 100px;
+
+(1)     top: 100px; left: 60px;
+(2)     top: 170px; left: 30px;
+(3)     top: 250px; left: 20px;
+(4)     top: 350px; left: 10px;
+(6)     top: 400px; left: 70px;
+(7)

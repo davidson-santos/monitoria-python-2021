@@ -3,6 +3,27 @@
     padding: 0;
 }
 
-h1 {
-    background-color: aqua;
+.box-tabuleiro {
+    background-color: blueviolet;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-tabuleiro .tabuleiro-content {
+    width: 800px;
+    height: 538.281px;
+    z-index: 1;
+}
+.box-tabuleiro .tabuleiro-content .jogadores {
+    position: absolute;
+    top: 0;
+    z-index: 2;
+}
+
+.box-tabuleiro .tabuleiro-content .jogadores #jogador1{
+    height: 120px;
+    position: relative;
+    top: 400px;
+    left: 70px;
 }
